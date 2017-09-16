@@ -1,0 +1,3 @@
+.pp_redacted {color: black !important; background-color: black !important;}.pp_redacted:hover {color: white !important;}
+.pp_overlay {color: transparent; position: absolute; background: lemonchiffon; opacity: 0.5; filter: alpha(opacity=50);}
+.pp_overlay:hover {color: black; opacity: 1; filter: alpha(opacity=100);}

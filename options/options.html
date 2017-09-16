@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+  <head>
+    <title>PERMA Police Options</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <main class="container">
+      <div id="status"></div>
+      <div class="row">
+
+        <div id="about" class="col s12">
+          <div class="row"></div>
+          <div class="row">
+            <div class="col s12 m6">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">About</span>
+                  <p><strong>PERMA Police is for entertainment purposes only!</strong></p>
+                  <br>
+                  <p>PERMA stands for <em>P</em>ositive emotion, <em>E</em>ngagement, Positive <em>R</em>elationships, <em>M</em>eaning, and <em>A</em>ccomplishment. These are the five components of psychological wellbeing. Each has a negative counterpart: negative emotion, disengagement, negative relationships, lack of meaning, and lack of accomplishment.</p>
+                  <br>
+                  <p>PERMA Police scans each element on a page and assigns it a wellbeing rating based on the PERMA components above. If 3/5 negative components score higher than their positive counterparts the element will be redacted or the page will be blocked depending on what action you select below.</p>
+                  <br>
+                </div>
+              </div>
+            </div>
+
+            <div class="col s12 m6">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">Action</span>
+                  <div class="input-field col s12">
+                      <select id="action">
+                        <option value="block">Block majority negative pages</option>
+                        <option value="redact">Redact negative elements</option>
+                        <option value="none">Nothing</option>
+                      </select>
+                  </div>
+                  <p>&nbsp;</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col s12 m6">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">Page Elements to Scan</span>
+                    <p>If PERMA Police is causing your browser to slow down, deselect some of the elements below.</p><br>
+                    <p>We recommend that you leave paragraphs, links, and headers selected for best results.</p><br>
+                    <p>
+                      <input type="checkbox" class="filled-in" id="inc_p"/>
+                      <label for="inc_p">Paragraphs</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" class="filled-in" id="inc_a"/>
+                      <label for="inc_a">Links</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" class="filled-in" id="inc_h"/>
+                      <label for="inc_h">Headers</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" class="filled-in" id="inc_li"/>
+                      <label for="inc_li">Lists</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" class="filled-in" id="inc_span"/>
+                      <label for="inc_span">Spans</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" class="filled-in" id="inc_phr"/>
+                      <label for="inc_phr">Phrase tags ('em', 'strong', etc.)</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" class="filled-in" id="inc_x"/>
+                      <label for="inc_x">The rest (tables, blockquotes, labels, etc.)</label>
+                    </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col s12 m6">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">Misc.</span>
+                    <p>If PERMA Police is causing your browser to slow down, deselect some of the options below.</p><br>
+                    <p>
+                      <input type="checkbox" class="filled-in" id="inc_n"/>
+                      <label for="inc_n">Include bigrams and trigrams</label>
+                    </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col s12 m6">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">References</span>
+                    <p>PERMA Police uses the permaV3_dd lexicon data from
+                      <a href="http://www.wwbp.org/lexica.html" rel="noopener" target="_blank">
+                      http://www.wwbp.org/lexica.html</a>. Used under the Creative Commons
+                      Attribution-NonCommercial-ShareAlike 3.0 Unported licence.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12">
+              <button id="save" class="right waves-effect waves-light btn">Save</button>
+            </div>
+          </div>
+        </div>
+    </main>
+
+    <footer class="container page-footer">
+      <div class="footer-copyright">
+        <div class="container">
+          &copy; 2017 P. Hughes
+          <a class="grey-text text-lighten-4 right" href="https://wwww.phugh.es">Website</a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/options.js"></script>
+  </body>
+</html>

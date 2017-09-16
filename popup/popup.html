@@ -1,0 +1,33 @@
+<!doctype html>
+<html id="pp_popup">
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body {min-width: 200px; min-height: 100px;}
+      #data {position: relative; margin: auto; min-height: 250px; min-width: 400px;}
+      .chartdiv {position: relative; min-width: 96vw; margin-top: 30px;}
+      .gray {color: white; background-color: gray; width: 100%; text-align: center; font-weight: 800;}
+      .hidden {display: none !important;}
+      .right {float: right;}
+    </style>
+  </head>
+  <body>
+      <div class="gray">PERMA Police Site Stats</div>
+      <div id="data" class="hidden">
+        <p><span id="blocked"></span> (<span id="cent"></span>%) of <span id="elems"></span> elements were more than 60% negative.</p>
+        <p><span id="rate"></span>/5 positive wellbeing domains score higher than their negative counterparts.</p>
+        <div class="chartdiv">
+          <canvas id="chart"></canvas>
+        </div>
+        <br>
+      </div>
+      <div id="error">
+        <p>No data to display.</p>
+        <p>Try refreshing the page.</p>
+      </div>
+      <p><a href="#!" id="opts" class="right">Options</a></p>
+      <br>
+      <script type="text/javascript" src="js/Chart.min.js"></script>
+      <script type="text/javascript" src="js/popup.js"></script>
+  </body>
+</html>
