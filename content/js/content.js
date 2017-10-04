@@ -4,12 +4,13 @@
 let action = 'block';
 let ngrams = true;
 let tags = 'p,a,h1,h2,h3,h4,h5,h6,li,span,em,strong,code,samp,kbd,var,blockquote,label,th,td,output';
+let tolerance = 3;
 
 /**
  * @function getNgrams
- * @param  {Array} arr  array of tokens
+ * @param  {Array}  arr array of tokens
  * @param  {Number} n   number of grams
- * @return {Array} array of n-grams
+ * @return {Array}  array of n-grams
  */
 function getNgrams(arr, n) {
   const ngrams = [];
@@ -35,15 +36,17 @@ function getNgrams(arr, n) {
 function getMatches(arr) {
   const matches = {};
   for (let category in permaLexicon) {
-    if (!permaLexicon.hasOwnProperty(category)) continue;
-    let match = [];
-    let data = permaLexicon[category];
-    for (let word in data) {
-      if ((data.hasOwnProperty(word)) && arr.indexOf(word) > -1) {
-        match.push(Number((data[word])));
+    if (permaLexicon.hasOwnProperty(category)) {
+      let match = [];
+      let data = permaLexicon[category];
+      let keys = Object.keys(data);
+      let len = keys.length;
+      while (len--) {
+        let word = keys[len];
+        if (arr.indexOf(word) > -1) match.push((data[word]));
       }
+      matches[category] = match;
     }
-    matches[category] = match;
   }
   return matches;
 };
@@ -56,8 +59,9 @@ function getMatches(arr) {
 function calcLex(obj) {
   let lex = 0;
   for (let word in obj) {
-    if (!obj.hasOwnProperty(word)) continue;
-    lex += Number(obj[word]);
+    if (obj.hasOwnProperty(word)) {
+      lex += obj[word];
+    }
   }
   return lex;
 };
@@ -74,7 +78,7 @@ function main() {
     filtered: 0,
   };
 
-  let elements = document.querySelectorAll(tags);
+  const elements = document.querySelectorAll(tags);
   const elems = elements.length;
 
   if (elems > 0) {
@@ -138,7 +142,7 @@ function main() {
         if (action === 'redact' && elements[i].classList) {
           elements[i].classList.add('pp_redacted');
           const els = elements[i].children;
-          for (let i = 0; i < els.length; i++) {
+          for (let i = 0, len = els.length; i < len; i++) {
             if (els[i].classList) els[i].classList.add('pp_redacted');
           }
         }
@@ -173,7 +177,7 @@ function main() {
     if (data.perma.POS_R > data.perma.NEG_R) z++;
     if (data.perma.POS_M > data.perma.NEG_M) z++;
     if (data.perma.POS_A > data.perma.NEG_A) z++;
-    if (action === 'block' && z <= 3) {
+    if (action === 'block' && z <= tolerance) {
           data.block = true;
     }
     data.rate = z;
@@ -182,16 +186,18 @@ function main() {
 }
 
 if (!permaLexicon) {
-  console.error('PERMA lexicon is missing!');
+  throw new Error('PERMA lexicon is missing!');
 } else {
   chrome.storage.sync.get({
-    action: 'block',
-    ngrams: true,
-    tags: 'p,a,h1,h2,h3,h4,h5,h6,li,span,em,strong,code,samp,kbd,var,blockquote,label,th,td,output',
+    action: action,
+    ngrams: ngrams,
+    tags: tags,
+    tolerance: tolerance,
   }, function(items) {
     action = items.action;
     ngrams = items.ngrams;
     tags = items.tags;
+    tolerance = items.tolerance;
 
     if (tags.length > 0) {
       const data = main();

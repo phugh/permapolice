@@ -5,6 +5,7 @@
 function saveOptions() {
   const act = document.getElementById('action').value;
   const nGrams = document.getElementById('inc_n').checked;
+  const tolerance = document.getElementById('blockTol').value;
 
   // concat checked elements into array
   const tags = [];
@@ -21,6 +22,7 @@ function saveOptions() {
     action: act,
     tags: tag,
     ngrams: nGrams,
+    tolerance: tolerance,
   }, function(items) {
     Materialize.toast('Options saved!', 3000);
   });
@@ -35,9 +37,11 @@ function restoreOptions() {
     action: 'block',
     tags: 'p,a,h1,h2,h3,h4,h5,h6,li,span,em,strong,code,samp,kbd,var,blockquote,label,th,td,output',
     ngrams: true,
+    tolerance: 3,
   }, function(items) {
     document.getElementById('action').value = items.action;
     document.getElementById('inc_n').checked = items.ngrams;
+    document.getElementById('blockTol').value = items.tolerance;
 
     const tags = items.tags.split(',');
     let len = tags.length;
