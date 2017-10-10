@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "PERMA Police",
   "short_name": "PERMAPolice",
-  "version": "0.7",
+  "version": "0.8",
   "description": "Block pages or redact elements based on wellbeing rating.",
   "author": "Peter Hughes",
   "homepage_url": "http://phugh.es/",

@@ -79,9 +79,9 @@ function main() {
   };
 
   const elements = document.querySelectorAll(tags);
-  const elems = elements.length;
+  let i = elements.length;
 
-  if (elems > 0) {
+  if (i > 0) {
     let filtered = 0;
 
     let P = [];
@@ -95,7 +95,7 @@ function main() {
     let Mn = [];
     let An = [];
 
-    for (let i = 0; i < elems; i++) {
+    while (i--) {
       // tokenise element text
       const text = elements[i].textContent;
       let tokens = text.match(permaReg);
@@ -107,7 +107,6 @@ function main() {
       }
       // match tokens against lexicon
       const matches = getMatches(tokens);
-      if (!matches) continue;
       // calculate lexical values
       const pp = calcLex(matches.POS_P);
       const pe = calcLex(matches.POS_E);
@@ -142,8 +141,9 @@ function main() {
         if (action === 'redact' && elements[i].classList) {
           elements[i].classList.add('pp_redacted');
           const els = elements[i].children;
-          for (let i = 0, len = els.length; i < len; i++) {
-            if (els[i].classList) els[i].classList.add('pp_redacted');
+          let x = els.length;
+          while (x--) {
+            if (els[x].classList) els[x].classList.add('pp_redacted');
           }
         }
       }
@@ -155,7 +155,7 @@ function main() {
     };
 
     data = {
-      elements: elems,
+      elements: elements.length,
       filtered: filtered,
       perma: {
         POS_P: average(P),
